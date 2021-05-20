@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block title %} Register {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+<body>
+    <span class="center">
+        <h1>Table data from our Database</h1><a href="/create"><button  type="btn" class="btn btn-primary">Create</button></a>
+    
+    </span>
+    <table width=100%>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>DESIGNATION</th>
+        <th>SALARY</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    <td>
+        {% for row in output_data %}
+        <tr>
+            <td>{{row['id']}}</td>
+            <td>{{row['name']}}</td>
+            <td>{{row['designation']}}</td>
+            <td>{{row['salary']}}</td>
+            <td><button type="btn" class="btn btn-warning">Update</button></td>
+            <td><button type="btn" class="btn btn-danger">Delete</button></td>
+        </tr>
+        {% endfor %}
+    </td>
+    </table>
+</body>
+</html>
+{% endblock %}
