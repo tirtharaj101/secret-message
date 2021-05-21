@@ -68,22 +68,25 @@ def index():
         name=request.form['name']
         desig=request.form['designation']
         salary=request.form['salary']
+@app.route('/success',methods=["GET","POST"])
+def success():
+    return render_template("landing.html")
 @app.route('/create',methods=["GET","POST"])
-def create():
-        if request.method == 'GET':
-            return render_template("create.html")
-        else:
-            name = request.form['name']
-            designation = request.form['designation']
-            salary = request.form['salary']
+def str():
+    if request.method == 'GET':
+        return render_template("create.html")
+    else:
+        name = request.form['name']
+        designation = request.form['designation']
+        salary = request.form['salary']
  
-            cur3 = mysql.connection.cursor()
-            cur3.execute("INSERT INTO employee (name, designation, salary) VALUES (%s,%s,%s)"(name,designation,salary))
-            mysql.connection.commit()
-            session['name'] = request.form['name']
-            session['designation'] = request.form['designation']
-            session['salary'] = request.form['salary']
-            return redirect(url_for('login'))
+        cur3 = mysql.connection.cursor()
+        cur3.execute("INSERT INTO employee (name, designation, salary) VALUES (%s,%s,%s)",(name,designation,salary,))
+        mysql.connection.commit()
+        session['name'] = request.form['name']
+        session['designation'] = request.form['designation']
+        session['salary'] = request.form['salary']
+        return redirect(url_for('success'))
 
 @app.route('/logout')
 def logout():
